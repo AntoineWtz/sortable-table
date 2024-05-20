@@ -16,11 +16,11 @@ const data = [
     { id: 12, name: 'Nectarine', quantity: 4, date: '2023-01-12' },
     { id: 13, name: 'Orange', quantity: 13, date: '2023-01-13' },
     { id: 14, name: 'Peach', quantity: 2, date: '2023-01-14' },
-    { id: 15, name: 'Quince', quantity: 14, date: '2023-01-15' },
-    { id: 16, name: 'Raspberry', quantity: 16, date: '2023-01-16' },
-    { id: 17, name: 'Strawberry', quantity: 17, date: '2023-01-17' },
-    { id: 18, name: 'Tangerine', quantity: 18, date: '2023-01-18' },
-    { id: 19, name: 'Ugli fruit', quantity: 19, date: '2023-01-19' },
+    { id: 15, name: 'Quince', quantity: 3, date: '2023-01-15' },
+    { id: 16, name: 'Raspberry', quantity: 8, date: '2023-01-16' },
+    { id: 17, name: 'Strawberry', quantity: 14, date: '2023-01-17' },
+    { id: 18, name: 'Tangerine', quantity: 9, date: '2023-01-18' },
+    { id: 19, name: 'Ugli fruit', quantity: 7, date: '2023-01-19' },
     { id: 20, name: 'Vanilla bean', quantity: 1, date: '2023-01-20' },
     { id: 21, name: 'Watermelon', quantity: 12, date: '2023-01-21' },
     { id: 22, name: 'Xigua', quantity: 0, date: '2023-01-22' },
@@ -55,14 +55,21 @@ const SortableTable = () => {
         setSortConfig({ key, direction });
     };
 
+    const getClassNamesFor = (name) => {
+        if (!sortConfig) {
+            return;
+        }
+        return sortConfig.key === name ? (sortConfig.direction === 'ascending' ? 'sorted-asc' : 'sorted-desc') : undefined;
+    };
+
     return (
         <table className="sortable-table">
             <thead>
                 <tr>
-                    <th onClick={() => requestSort('id')}>ID</th>
-                    <th onClick={() => requestSort('name')}>Name</th>
-                    <th onClick={() => requestSort('quantity')}>Quantity</th>
-                    <th onClick={() => requestSort('date')}>Date</th>
+                    <th onClick={() => requestSort('id')} className={getClassNamesFor('id')}>ID</th>
+                    <th onClick={() => requestSort('name')} className={getClassNamesFor('name')}>Name</th>
+                    <th onClick={() => requestSort('quantity')} className={getClassNamesFor('quantity')}>Quantity</th>
+                    <th onClick={() => requestSort('date')} className={getClassNamesFor('date')}>Date</th>
                 </tr>
             </thead>
             <tbody>

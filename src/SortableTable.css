@@ -11,8 +11,8 @@
 .sortable-table th,
 .sortable-table td {
     border: 1px solid #ddd;
-    padding: 12px;
-    text-align: left;
+    padding: 12px 0;
+    text-align: center;
 }
 
 .sortable-table th {
